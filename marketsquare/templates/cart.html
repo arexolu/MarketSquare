@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %}My Shopping Cart{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-12">
+            <h3 class="h3">Shopping Cart</h3>
+        </div>
+
+        {% if cart_order %}
+
+        <div class="col-sm-7">
+
+            <table class="table table-borderless align-middle">
+                <tbody>
+
+                    {% for item in cart_order.order_items %}
+
+                    <tr>
+                        <td>
+                            <img src="{{item.product.image}}" class="img-thumbnail" />
+                        </td>
+                        <td>
+                            <h5>{{item.product.name}}</h5>
+                            <p>
+                                <small class="text-body-secondary">{{item.product.units_available}} pairs in stock</small>
+                            </p>
+                        </td>
+                        <td>
+                            <form class="d-block w-100" method="post" action="/orders/items/{{item.id}}">
+                                <input type="hidden" name="product_id" value="{{item.product.id}}" />
+                                <div class="input-group input-group-sm">
+                                    <input name="quantity" type="number" value="{{item.quantity}}" min="1" max="20" class="form-control" id="inputGroupFile" aria-describedby="inputGroupFileAddon" aria-label="Update Cart">
+                                    <button class="btn btn-sm btn-outline-primary" type="submit" id="inputGroupFileAddon">Update</button>
+                                </div>
+                            </form>
+                        </td>
+                        <td>${{item.amount|round(2)}}</td>
+                        <td>
+                            <form method="post" action="/orders/items/{{item.id}}/delete">
+                                <button class="btn btn-sm btn-outline-secondary" type="submit">X</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+            
+        </div>
+
+        <div class="col-sm-1"></div>
+
+        <div class="col-sm-4">
+
+            <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                  <div>
+                    <h6 class="my-0">Sub-total</h6>
+                  </div>
+                  <span class="text-body-secondary">${{cart_order.total|round(2)}}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                  <div>
+                    <h6 class="my-0">Shipping Fees</h6>
+                    <small class="text-body-secondary">Free delivery via any method</small>
+                  </div>
+                  <span class="text-body-secondary">$0</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                  <div>
+                    <h6 class="my-0">Taxes</h6>
+                    <small class="text-body-secondary">Your purchases are tax inclusive</small>
+                  </div>
+                  <span class="text-body-secondary">$0</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>Total (USD)</span>
+                  <strong>${{cart_order.total|round(2)}}</strong>
+                </li>
+              </ul>
+
+              <form method="post" action="/orders/checkout">
+                <button class="btn btn-lg btn-primary w-100" type="submit">
+                    Checkout
+                </button>
+              </form>
+
+        </div>
+
+        {% else %}
+
+        <div class="col-sm-6">
+          <h5>You don't have any item in your shopping cart</h5>
+        </div>
+
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

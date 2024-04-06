@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}My Orders{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3 class="h3">Orders</h3>
+        </div>
+        {% if orders %}
+        <div class="col-sm-7">
+
+            <table class="table table-borderless align-middle">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <td>Order #{{order.id}}</td>
+                        <td>${{order.total|round(2)}}</td>
+                        <td>{{order.status}}</td>
+                        <td>{{order.created_at}}</td>                                
+                    </tr>
+                    {% endfor %}                    
+                </tbody>
+            </table>
+
+            
+            
+        </div>
+
+        {% else %}
+
+        <div class="col-sm-6">
+            <h5>You have not placed an order</h5>
+        </div>
+  
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

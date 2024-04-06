@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Products{% endblock %}
+{% block content %}
+<div class="py-5">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        {% for product in products %}
+
+          {% include "tmpls/_product.html" %}
+
+        {% endfor %}
+
+      </div>
+    </div>
+</div>
+{% endblock %}

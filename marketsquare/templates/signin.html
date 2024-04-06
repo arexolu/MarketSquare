@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Signin{% endblock %}
+{% block content %}
+<div class="auth-form w-100 m-auto">
+
+    <form method="post" action="/auth">
+
+      <h1 class="h4 mb-3 fw-normal">Sign in here...</h1>
+  
+      <div class="form-floating">
+        <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required value="{{form.email}}">
+        <label for="floatingInput">Email address</label>
+      </div>
+
+      <div class="form-floating">
+        <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password" minlength="8" required value="{{form.password}}">
+        <label for="floatingPassword">Password</label>
+      </div>
+      
+      <button class="btn btn-primary w-100 py-2 mb-3 mt-3" type="submit">Sign in</button>
+
+    </form>
+
+    <p><a href="/auth/forgot-password">Forgot password?</a></p>
+</div>    
+{% endblock %}

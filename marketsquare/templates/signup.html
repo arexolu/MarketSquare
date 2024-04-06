@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Signup{% endblock %}
+{% block content %}
+<div class="auth-form w-100 m-auto">
+    <form method="post" action="/users">
+        
+      <h1 class="h4 mb-3 fw-normal">Sign up here...</h1>
+      
+      <div class="form-floating">
+        <input name="first_name" type="text" class="form-control" id="floatingFNameInput" placeholder="First name" minlength="3" required value="{{form.first_name}}">
+        <label for="floatingFNameInput">First name</label>
+      </div>
+
+      <div class="form-floating">
+        <input name="last_name" type="text" class="form-control" id="floatingLNameInput" placeholder="Last name" minlength="3" required value="{{form.last_name}}">
+        <label for="floatingLNameInput">Last name</label>
+      </div>
+
+      <div class="form-floating">
+        <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required value="{{form.email}}">
+        <label for="floatingInput">Email address</label>
+      </div>
+
+      <div class="form-floating">
+        <input name="password" type="password" class="form-control" 
+          id="floatingPassword" placeholder="Password" minlength="8"
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$" 
+          required value="{{form.password}}">
+        <label for="floatingPassword">Password</label>
+      </div>
+      <div class="form-text">
+        Password must have at least 1 upper case letter, 1 lower case letter, and 1 number.
+        Minimum of 8 characters long.
+      </div>
+  
+      <button class="btn btn-primary w-100 py-2  mb-3 mt-3" type="submit">Sign up</button>
+    </form>
+</div>
+{% endblock %}

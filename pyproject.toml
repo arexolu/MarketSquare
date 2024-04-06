@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "marketsquare"
+version = "0.1.0"
+description = ""
+authors = ["Akeem Aregbesola. <arexolu@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+quart-bcrypt = "^0.0.7"
+quart = {extras = ["dotenv"], version = "^0.19.4"}
+pydantic = {extras = ["email"], version = "^2.6.4"}
+flask-sqlalchemy = "^3.1.1"
+marshmallow = "^3.21.1"
+quart-flask-patch = "^0.3.0"
+flask-migrate = "^4.0.7"
+flask-mail = "^0.9.1"
+
+[tool.poetry.scripts]
+start = "marketsquare:run"
+seed = "marketsquare:seed"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

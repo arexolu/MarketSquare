@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}User Profile{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="h1 mb-5 fw-normal">{{user.first_name}} {{user.last_name}}</h1>
+
+            
+
+        </div>
+        <div class="col-sm-7 mb-5">
+            <form method="post" action="/users/{{user.id}}">
+        
+                <h4 class="h4 mb-3 fw-normal">Update Details</h4>
+                
+                <div class="form-floating">
+                  <input name="first_name" type="text" class="form-control" id="floatingFNameInput" placeholder="First name" minlength="3" required value="{{form.first_name}}">
+                  <label for="floatingFNameInput">First name</label>
+                </div>
+          
+                <div class="form-floating">
+                  <input name="last_name" type="text" class="form-control" id="floatingLNameInput" placeholder="Last name" minlength="3" required value="{{form.last_name}}">
+                  <label for="floatingLNameInput">Last name</label>
+                </div>
+
+                <div class="form-floating">
+                  <input name="email" type="email" class="form-control" id="floatingEmailInput" placeholder="name@example.com" required readonly disabled value="{{form.email}}">
+                  <label for="floatingEmailInput">Email address</label>
+                </div>
+          
+                <button class="btn btn-primary w-100 py-2 mb-3 mt-3" type="submit">Update</button>
+          
+              </form>
+          
+        </div>
+        <div class="col-sm-7 mb-5">
+
+            <form method="post" action="/users/{{user.id}}/passwords">
+        
+                <h4 class="h4 mb-3 fw-normal">Change Password</h4>
+                
+                <div class="form-floating">
+                  <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Current Password" minlength="8" required value="{{form2.password}}">
+                  <label for="floatingPassword">Current Password</label>
+                </div>
+
+                <div class="form-floating">
+                    <input name="new_password" type="password" class="form-control" 
+                      id="floatingNewPassword" placeholder="New Password" minlength="8" 
+                      pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$" 
+                      required value="{{form2.new_password}}">
+                    <label for="floatingNewPassword">New Password</label>
+                </div>
+                <div class="form-text">
+                  Password must have at least 1 upper case letter, 1 lower case letter, and 1 number.
+                  Minimum of 8 characters long.
+                </div>
+
+                <div class="form-floating">
+                    <input name="new_password_confirmation" type="password" 
+                      class="form-control" id="floatingNewPasswordC" 
+                      placeholder="Retype New Password" minlength="8"
+                      pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$" 
+                      required value="{{form2.new_password_confirmation}}">
+                    <label for="floatingNewPasswordC">Retype New Password</label>
+                </div>
+
+                <button class="btn btn-primary w-100 py-2 mb-3 mt-3" type="submit">Change</button>
+          
+              </form>  
+        </div>
+    </div>
+</div>
+
+{% endblock %}

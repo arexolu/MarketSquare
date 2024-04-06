@@ -1,0 +1,1 @@
+from .controller import mod as products_module, featured_products

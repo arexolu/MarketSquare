@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Contact Us{% endblock %}
+{% block content %}
+
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 justify-content-center">
+
+        <div class="col-sm-6 contact-form">
+
+          <h1 class="h3 mb-3 fw-normal">Contact Us</h1>
+
+          <form method="post" action="/contact">
+
+            <h1 class="h5 mb-3 fw-normal">Send us a message</h1>
+      
+            <p class="text-secondary">We look forward to hearing from you</p>
+
+            <div class="form-floating">
+              <input name="name" type="text" class="form-control" id="floatingNameInput" placeholder="Name" minlength="3" required value="{{form.name}}">
+              <label for="floatingNameInput">Name</label>
+            </div>
+      
+            <div class="form-floating">
+              <input name="email" type="email" class="form-control" id="floatingEmailInput" placeholder="name@example.com" required value="{{form.email}}">
+              <label for="floatingEmailInput">Email address</label>
+            </div>
+
+            <div class="form-floating">
+              <textarea name="message" class="form-control" 
+                id="floatingMessageInput" placeholder="Type your message here" 
+                minlength="20" required
+                style="min-height: 10rem">{{form.message}}</textarea>
+              <label for="floatingMessageInput">Message</label>
+            </div>
+            <div class="form-text">
+              Minimum of 20 characters long
+            </div>
+              
+            <button class="btn btn-primary w-100 py-2 mb-3 mt-3" type="submit">Send Message</button>
+          </form>
+
+          
+
+        </div>
+
+
+      </div>
+    </div>
+{% endblock %}
